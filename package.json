@@ -1,5 +1,5 @@
 { "name": "polydox"
-, "version": "0.0.0-work-in-progress"
+, "version": "0.1.0"
 , "description": "Pipe multiple files into dox at once."
 
 , "bin":
