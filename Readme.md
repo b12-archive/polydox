@@ -22,7 +22,7 @@ polydox
 
 **Pipe multiple files into *[dox][]* at once.**
 
-[dox]:  https://npm.im/dox
+[dox]:  http://npm.im/dox
 
 
 
