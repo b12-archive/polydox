@@ -8,7 +8,6 @@
 
 , "dependencies":
   { "dox": "^0.8.0"
-  , "yargs": "^3.12.0"
   }
 
 , "scripts":
