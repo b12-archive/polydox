@@ -89,16 +89,18 @@ $ npm install --global polydox
 Usage
 -----
 
-    polydox [options] <file>...
+  SYNOPSIS
+
+    Usage: polydox [options] <file>...
 
 
-  Options:
+  OPTIONS
 
     -h  --help   Print a short synopsis (-h) or this usage info (--help)
     -r  --raw    Don’t preprocess stuff with markdown
 
 
-  Examples:
+  EXAMPLES
 
     $ polydox a.js
 
