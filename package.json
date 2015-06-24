@@ -40,7 +40,8 @@
 
 , "license": "MIT"
 , "keywords":
-  [ "…"
+  [ "dox"
+  , "cli"
   ]
 , "contributors":
   [ "Tomek Wiszniewski <t.wiszniewski@gmail.com>"
