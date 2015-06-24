@@ -11,11 +11,22 @@ const polydox = resolve(__dirname, '../../module/bin/polydox.js');
 const polydoxCommand = curry(execFile)(polydox);
 
 tape(title('Prints usage'), (is) => {
-  is.plan(6);
+  is.plan(8);
 
   polydoxCommand([], (error, _, stderr) => {
     is.equal(error && error.code, 1,
       '`polydox` fails…'
+    );
+
+    is.ok(
+      test(stderr, /^usage:/i),
+      '…and prints usage to stderr'
+    );
+  });
+
+  polydoxCommand(['--just', '--options'], (error, _, stderr) => {
+    is.equal(error && error.code, 1,
+      '`polydox --just --options` fails…'
     );
 
     is.ok(
