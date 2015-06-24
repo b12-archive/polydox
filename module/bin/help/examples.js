@@ -1,5 +1,3 @@
-import synopsis from './synopsis';
-
 module.exports =
 `  Examples:
 
