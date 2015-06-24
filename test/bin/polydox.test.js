@@ -136,3 +136,34 @@ tape(title('Works with multiple files'), (is) => {
   run.timeout(500);
   run.end();
 });
+
+tape(title('Outputs `--raw`'), (is) => {
+  const run = spawn(is, `${polydox} --raw a.js b.js c.js`, {cwd});
+
+  run.succeeds(
+    'succeeds'
+  );
+
+  run.stdout.match(
+    validJson,
+    'outputs JSON'
+  );
+
+  run.stdout.match(
+    (output) => isArray(JSON.parse(output)),
+    'outputs a JSON array'
+  );
+
+  run.stdout.match(
+    (output) => JSON.parse(output).length === 4,
+    'with four elements (for four docblocks)'
+  );
+
+  run.stdout.match(
+    (output) => typeof JSON.parse(output)[0].tags[0].html === 'undefined',
+    'without doing the markdown thing'
+  );
+
+  run.timeout(500);
+  run.end();
+});
