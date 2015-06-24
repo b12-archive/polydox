@@ -79,13 +79,13 @@ $ for file in source/*.js; do dox $file; done
 $ polydox source/*.js
 [
   {
-    // …usual dox output PLUS:
+    // …usual dox output, plus one property:
     "sourceFile": "source/a.js"
   },
   {
-    // …usual dox output PLUS:
+    // …
     "sourceFile": "source/b.js"
-  },
+  }
 ]
 ```
 
