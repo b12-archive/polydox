@@ -1,8 +1,10 @@
 const {resolve} = require('path');
 const {execFile} = require('child_process');
+const {isArray} = Array;
 
 const tape = require('tape-catch');
 const {test, plus, curry} = require('1-liners');
+const spawn = require('tape-spawn');
 
 const title = curry(plus)('The CLI program:  ');
 const polydox = resolve(__dirname, '../../module/bin/polydox.js');
@@ -43,4 +45,55 @@ tape(title('Prints usage'), (is) => {
       '…and prints manpage-like help'
     );
   });
+});
+
+tape(title('Works for a single file'), (is) => {
+  const run = spawn(is, `${polydox} a.js`, {
+    cwd: resolve(__dirname, '../mock-cwd'),
+  });
+
+  run.succeeds(
+    'succeeds'
+  );
+
+  run.stdout.match(
+    (output) => {
+      try {JSON.parse(output);}
+      catch (e) {
+        if (e instanceof SyntaxError) return false;
+        else throw e;
+      }
+
+      return true;
+    },
+    'outputs JSON'
+  );
+
+  run.stdout.match(
+    (output) => isArray(JSON.parse(output)),
+    'outputs a JSON array'
+  );
+
+  run.stdout.match(
+    (output) => JSON.parse(output).length === 1,
+    'with one element (for one docblock)'
+  );
+
+  run.stdout.match(
+    (output) => JSON.parse(output)[0].sourceFile === 'a.js',
+    'with the file’s source in `sourceFile`'
+  );
+
+  run.stdout.match(
+    (output) => JSON.parse(output)[0].tags[0].type === 'example',
+    'with correct tags'
+  );
+
+  run.stdout.match(
+    (output) => typeof JSON.parse(output)[0].tags[0].html === 'string',
+    'doing the markdown thing'
+  );
+
+  run.timeout(500);
+  run.end();
 });
