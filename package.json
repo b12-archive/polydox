@@ -35,7 +35,7 @@
 
   , "1-liners": "0.3.2"
   , "tape-catch": "1.0.4"
-  , "tape-spawn": "1.4.0"
+  , "tape-spawn": "tomekwi/tape-spawn#3fdc82f"
   }
 
 , "files":
