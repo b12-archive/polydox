@@ -92,12 +92,13 @@ Usage
     polydox [options] <file>...
 
 
-Options:
+  Options:
 
-    -r  --raw   Don’t preprocess stuff with markdown
+    -h  --help   Print a short synopsis (-h) or this usage info (--help)
+    -r  --raw    Don’t preprocess stuff with markdown
 
 
-Examples:
+  Examples:
 
     $ polydox a.js
 
