@@ -107,6 +107,7 @@ $ npm install --global polydox
 Usage
 -----
 
+<!-- @usage start -->
   SYNOPSIS
 
     Usage: polydox [options] <file>...
@@ -125,7 +126,7 @@ Usage
     $ polydox a.js b.js c.js > dox-output.json
 
     $ polydox source/*.js | doxie --render --inject into Readme.md
-
+<!-- @usage end -->
 
 
 
