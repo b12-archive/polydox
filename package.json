@@ -2,8 +2,13 @@
 , "version": "0.0.0-work-in-progress"
 , "description": "Pipe multiple files into dox at once."
 
+, "bin":
+  { "polydox": "bin/polydox.js"
+  }
+
 , "dependencies":
   { "dox": "^0.8.0"
+  , "yargs": "^3.12.0"
   }
 
 , "scripts":
@@ -13,9 +18,9 @@
   , "develop": "nodangel --ignore node_modules --ignore coverage --exec 'npm run --silent test:lite'"
   , "prepublish": "npm run --silent clean && npm run transpile"
   , "test": "jshint . && npm run test:transpile && node .es5/test.js | tap-spec"
-  , "test:transpile": "rm -rf .es5 && babel test.js module/*.js --out-dir .es5"
+  , "test:transpile": "rm -rf .es5 && babel test.js module/*.js module/bin/*.js --out-dir .es5"
   , "test:lite": "babel-node test.js | tap-spec"
-  , "transpile": "cd module && babel --out-dir ../ *.js"
+  , "transpile": "cd module && babel --out-dir ../ *.js bin/*.js"
   , "view-coverage": "echo 'Generating coverage reports...'; npm run coverage >/dev/null && echo '...done.' && xdg-open ./coverage/lcov-report/index.html >/dev/null"
   }
 
@@ -34,6 +39,7 @@
   [ "/*.js"
   , "/module/"
   , "/test/"
+  , "/bin/"
   , "/Readme.md"
   , "/License.md"
   ]
