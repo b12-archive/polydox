@@ -37,6 +37,11 @@ const {parseComments} = require('dox');
 
 const indent = curry(replace)(/^(?!$)/mg, '  ');
 const toJson = (object) => JSON.stringify(object, null, 2);
+const doxOptions = (
+  (flags['--raw'] || flags['-r']) ?
+  {raw: true} :
+  {}
+);
 
 stdout.write('[');
 
@@ -52,7 +57,7 @@ forEach((sourceFile, fileId) => {
       ((fileId === 0 && commentId === 0) ? '\n' : ',\n') +
       indent(toJson(decorate(comment)))
     ),
-    parseComments(source)
+    parseComments(source, doxOptions)
   );
 }, files);
 
