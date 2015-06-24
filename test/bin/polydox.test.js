@@ -47,25 +47,27 @@ tape(title('Prints usage'), (is) => {
   });
 });
 
-tape(title('Works for a single file'), (is) => {
-  const run = spawn(is, `${polydox} a.js`, {
-    cwd: resolve(__dirname, '../mock-cwd'),
-  });
+const cwd = resolve(__dirname, '../mock-cwd');
+
+const validJson = (output) => {
+  try {JSON.parse(output);}
+  catch (e) {
+    if (e instanceof SyntaxError) return false;
+    else throw e;
+  }
+
+  return true;
+};
+
+tape(title('Works with a single file'), (is) => {
+  const run = spawn(is, `${polydox} a.js`, {cwd});
 
   run.succeeds(
     'succeeds'
   );
 
   run.stdout.match(
-    (output) => {
-      try {JSON.parse(output);}
-      catch (e) {
-        if (e instanceof SyntaxError) return false;
-        else throw e;
-      }
-
-      return true;
-    },
+    validJson,
     'outputs JSON'
   );
 
@@ -92,6 +94,32 @@ tape(title('Works for a single file'), (is) => {
   run.stdout.match(
     (output) => typeof JSON.parse(output)[0].tags[0].html === 'string',
     'doing the markdown thing'
+  );
+
+  run.timeout(500);
+  run.end();
+});
+
+tape(title('Works with multiple files'), (is) => {
+  const run = spawn(is, `${polydox} *.js`, {cwd});
+
+  run.succeeds(
+    'succeeds'
+  );
+
+  run.stdout.match(
+    validJson,
+    'outputs JSON'
+  );
+
+  run.stdout.match(
+    (output) => isArray(JSON.parse(output)),
+    'outputs a JSON array'
+  );
+
+  run.stdout.match(
+    (output) => JSON.parse(output).length === 4,
+    'with four elements (for four docblocks)'
   );
 
   run.timeout(500);
