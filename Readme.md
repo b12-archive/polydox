@@ -20,12 +20,61 @@
 polydox
 ===
 
-**…**
+**Pipe multiple files into *[dox][]* at once.**
+
+[dox]:  https://npm.im/dox
 
 
-**⚠ Heads up!** This is totally a work in progress. [Thoughts and ideas][] are very welcome.
 
-[Thoughts and ideas]:  https://github.com/studio-b12/polydox/issues
+
+Why
+---
+
+The original `dox` CLI tool [reads a single source from stdin][]:
+
+```sh
+$ dox < utils.js
+...JSON...
+```
+
+This simple idea gets complicated in a multi-file project. Here are your options:
+
+* Concat files before piping them to `dox`:
+
+```sh
+$ cat source/*.js | dox
+...LINE NUMBERS LOST...
+```
+
+* Concat `dox` output:
+
+```sh
+$ for file in source/*.js; do dox $file; done
+...NOT VALID JSON...
+```
+
+* Wild hacks.
+
+[reads a single source from stdin]:  https://github.com/tj/dox/tree/934b22c#usage-examples
+
+
+###  Worry no more!  ###
+
+Now you have `polydox`:
+
+```sh
+$ polydox source/*.js
+[
+  {
+    // …usual dox output PLUS:
+    "sourceFile": "source/a.js"
+  },
+  {
+    // …usual dox output PLUS:
+    "sourceFile": "source/b.js"
+  },
+]
+```
 
 
 
@@ -34,7 +83,7 @@ Installation
 ------------
 
 ```sh
-$ npm install polydox
+$ npm install --global polydox
 ```
 
 
@@ -43,7 +92,22 @@ $ npm install polydox
 Usage
 -----
 
-…
+    polydox [options] <file>...
+
+
+Options:
+
+    -r  --raw   Don’t preprocess stuff with markdown
+
+
+Examples:
+
+    $ polydox a.js
+
+    $ polydox a.js b.js c.js > dox-output.json
+
+    $ polydox source/*.js | doxie --render --inject into Readme.md
+
 
 
 
