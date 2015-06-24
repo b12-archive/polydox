@@ -1,5 +1,7 @@
+const {bold} = require('chalk');
+
 module.exports =
-`  Examples:
+`  ${bold('EXAMPLES')}
 
     $ polydox a.js
 

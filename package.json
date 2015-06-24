@@ -8,6 +8,7 @@
 
 , "dependencies":
   { "dox": "^0.8.0"
+  , "chalk": "^1.0.0"
   }
 
 , "scripts":

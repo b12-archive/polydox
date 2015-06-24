@@ -1,3 +1,6 @@
+const {bold} = require('chalk');
+
 module.exports =
-`polydox [options] <file>...
-`;
+`  ${bold('SYNOPSIS')}
+
+${require('./usage').replace(/^(?!$)/g, '    ')}`;

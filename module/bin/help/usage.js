@@ -1,6 +1,3 @@
-import synopsis from './synopsis';
-
 module.exports =
-`  Usage:
-
-    ${synopsis}`;
+`Usage: polydox [options] <file>...
+`;

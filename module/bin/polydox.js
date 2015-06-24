@@ -9,14 +9,14 @@ args.forEach((argument) => {
 });
 
 if (!args.length) {
-  stderr.write(require('./help/synopsis'));
+  stderr.write(require('./help/usage'));
   exit(1);
 }
 
-if (flags['-h']) stdout.write(require('./help/synopsis'));
+if (flags['-h']) stdout.write(require('./help/usage'));
 
 if (flags['--help']) stdout.write([
-  require('./help/usage'),
+  require('./help/synopsis'),
   require('./help/options'),
   require('./help/examples'),
 ].join('\n\n'));
