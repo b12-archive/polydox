@@ -12,11 +12,6 @@ forEach((arg) => {
   else files.push(arg);
 }, args);
 
-if (!args.length) {
-  stderr.write(require('./help/usage'));
-  exit(1);
-}
-
 if (flags['-h']) stdout.write(require('./help/usage'));
 
 if (flags['--help']) stdout.write([
@@ -26,6 +21,11 @@ if (flags['--help']) stdout.write([
 ].join('\n\n'));
 
 if (flags['-h'] || flags['--help']) exit(0);
+
+if (!files.length) {
+  stderr.write(require('./help/usage'));
+  exit(1);
+}
 
 const {readFileSync} = require('fs');
 const {resolve} = require('path');
