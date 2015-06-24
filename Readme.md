@@ -55,12 +55,7 @@ $ for file in source/*.js; do dox $file; done
 
 * Wild hacks.
 
-[reads a single source from stdin]:  https://github.com/tj/dox/tree/934b22c#usage-examples
-
-
-###  Worry no more!  ###
-
-Now you have `polydox`:
+**But worry no more!** Now you have `polydox`:
 
 ```sh
 $ polydox source/*.js
@@ -75,6 +70,8 @@ $ polydox source/*.js
   },
 ]
 ```
+
+[reads a single source from stdin]:  https://github.com/tj/dox/tree/934b22c#usage-examples
 
 
 
