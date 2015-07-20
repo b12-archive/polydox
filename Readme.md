@@ -107,7 +107,8 @@ $ npm install --global polydox
 Usage
 -----
 
-<!-- @usage start -->
+<!-- @doxie.inject start -->
+<!-- Don’t remove or change the comment above – that can break automatic updates. -->
   SYNOPSIS
 
     Usage: polydox [options] <file>...
@@ -126,7 +127,8 @@ Usage
     $ polydox --raw a.js b.js c.js > dox-output.json
 
     $ polydox source/*.js | doxie --render --inject into Readme.md
-<!-- @usage end -->
+<!-- Don’t remove or change the comment below – that can break automatic updates. More info at <http://npm.im/doxie.inject>. -->
+<!-- @doxie.inject end -->
 
 
 
